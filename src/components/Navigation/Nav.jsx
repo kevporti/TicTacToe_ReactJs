@@ -4,7 +4,7 @@ import Logo from "./TitleTicTacToe.png";
 function Nav() {
   return (
     <div className="flex justify-center pt-8">
-      <img src={Logo} className="h-20 cursor-pointer" />
+      <img src={Logo} className="h-20 cursor-pointer" alt="" />
     </div>
   );
 }
