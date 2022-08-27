@@ -1,5 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { Transition, Dialog } from "@headlessui/react";
+import Default_O from "./XandO/Default_O.png";
+import Default_X from "./XandO/Default_X.png";
 
 function Settings({ restartGame }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +16,7 @@ function Settings({ restartGame }) {
 
   return (
     <>
-      <div className="mx-4 bg-bgtable border-2 border-darkblue rounded-lg h-full">
+      <div className="mx-4 bg-bgtable rounded-lg h-full">
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
@@ -22,13 +24,13 @@ function Settings({ restartGame }) {
         <h1 className="font-medium text-center text-3xl">Settings</h1>
         <div className="grid grid-cols-2 gap-4 m-4">
           <div
-            className="flex justify-center items-center font-medium py-1 border-2 border-darkblue rounded hover:bg-darkblue hover:text-white cursor-pointer"
+            className="flex justify-center items-center font-medium py-1 border-2 border-darkblue rounded hover:bg-darkblue hover:text-bgtable cursor-pointer"
             onClick={restartGame}
           >
             Restart
           </div>
           <div
-            className="flex justify-center items-center font-medium py-1 border-2 border-darkblue rounded hover:bg-darkblue hover:text-white"
+            className="flex justify-center items-center font-medium py-1 border-2 border-darkblue rounded hover:bg-darkblue hover:text-bgtable"
             onClick={openModal}
           >
             <i className="material-symbols-outlined cursor-pointer">settings</i>
@@ -62,21 +64,43 @@ function Settings({ restartGame }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-bgtable p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="text-xl font-bold leading-6 text-darkblue"
                   >
                     Change your icon!
                   </Dialog.Title>
-                  <div className="mt-2">
-                    <div></div>
+                  <div className="mt-2 text-darkblue font-medium">
+                    <hr className="border border-darkblue rounded-full bg-darkblue" />
+                    <div className="flex flex-col">
+                      <div className="flex">
+                        <input type="checkbox" className="" />
+                        <h1>Default:</h1>
+                      </div>
+                      <div className="flex gap-2 mt-4">
+                        <img
+                          src={Default_O}
+                          alt=""
+                          className="bg-darkblue w-16"
+                        />
+                        <img
+                          src={Default_X}
+                          alt=""
+                          className="bg-darkblue w-16"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex">
+                      <input type="checkbox" className="" />
+                      <div>Pirates:</div>
+                    </div>
                   </div>
 
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-darkblue px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex justify-center rounded-md bg-darkblue px-4 py-2 text-sm font-medium text-bgtable focus:outline-none"
                       onClick={closeModal}
                     >
                       Done.
