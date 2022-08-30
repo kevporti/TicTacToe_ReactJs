@@ -3,6 +3,8 @@ import Default_O from "./XandO/Default_O.png";
 import Default_X from "./XandO/Default_X.png";
 import Pirates_O from "./XandO/Pirates_O.png";
 import Pirates_X from "./XandO/Pirates_X.png";
+import DashedLines_X from "./XandO/DashedLines_X.png";
+import DashedLines_O from "./XandO/DashedLines_O.png";
 
 function Box({ value, onClick, settings }) {
   function opciones(value) {
@@ -11,20 +13,19 @@ function Box({ value, onClick, settings }) {
         return Default_X;
       } else if (value === "O") {
         return Default_O;
-      } else {
-        return undefined;
       }
     } else if (settings === "Pirates") {
       if (value === "X") {
         return Pirates_X;
       } else if (value === "O") {
         return Pirates_O;
-      } else {
-        return undefined;
       }
-    } else {
-      return null;
-    }
+    } else if (settings === "DashedLines")
+      if (value === "X") {
+        return DashedLines_X;
+      } else if (value === "O") {
+        return DashedLines_O;
+      }
   }
 
   return (

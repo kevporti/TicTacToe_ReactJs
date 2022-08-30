@@ -2,9 +2,14 @@ import React, { useState, Fragment } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import Default_O from "./XandO/Default_O.png";
 import Default_X from "./XandO/Default_X.png";
+import Pirates_O from "./XandO/Pirates_O.png";
+import Pirates_X from "./XandO/Pirates_X.png";
+import DashedLines_X from "./XandO/DashedLines_X.png";
+import DashedLines_O from "./XandO/DashedLines_O.png";
 
-function Settings({ restartGame }) {
+function Settings({ restartGame, options, setOptions }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [Icon, setIcon] = useState("");
 
   function openModal() {
     setIsOpen(true);
@@ -12,6 +17,15 @@ function Settings({ restartGame }) {
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  function handleSelectIcons(e) {
+    setIcon(e.target.value);
+  }
+
+  async function handleSettings() {
+    await setOptions(Icon);
+    closeModal();
   }
 
   return (
@@ -71,37 +85,80 @@ function Settings({ restartGame }) {
                   >
                     Change your icon!
                   </Dialog.Title>
-                  <div className="mt-2 text-darkblue font-medium">
+                  <form className="mt-2 text-darkblue font-medium">
                     <hr className="border border-darkblue rounded-full bg-darkblue" />
-                    <div className="flex flex-col">
-                      <div className="flex">
-                        <input type="checkbox" className="" />
-                        <h1>Default:</h1>
+                    <div className="grid grid-cols-2">
+                      <div className="flex flex-col mt-2">
+                        <div className="flex">
+                          <h1 className="font-medium">Default:</h1>
+                        </div>
+                        <div className="flex gap-2 mt-2">
+                          <img
+                            src={Default_X}
+                            alt=""
+                            className="bg-darkblue w-16 rounded"
+                          />
+                          <img
+                            src={Default_O}
+                            alt=""
+                            className="bg-darkblue w-16 rounded"
+                          />
+                        </div>
                       </div>
-                      <div className="flex gap-2 mt-4">
-                        <img
-                          src={Default_O}
-                          alt=""
-                          className="bg-darkblue w-16"
-                        />
-                        <img
-                          src={Default_X}
-                          alt=""
-                          className="bg-darkblue w-16"
-                        />
+                      <div className="flex justify-start items-center">
+                        <select
+                          name="selectIcons"
+                          value={Icon}
+                          onChange={handleSelectIcons}
+                          className="py-1 px-4 bg-darkblue text-bgtable rounded focus:outline-none"
+                        >
+                          <option value="Default">Default</option>
+                          <option value="Pirates">Pirates</option>
+                          <option value="DashedLines">DashedLines</option>
+                        </select>
+                      </div>
+                      <div className="flex flex-col mt-4">
+                        <div className="flex">
+                          <h1 className="font-medium">DashedLines:</h1>
+                        </div>
+                        <div className="flex gap-2 mt-2">
+                          <img
+                            src={DashedLines_X}
+                            alt=""
+                            className="bg-darkblue w-16 rounded"
+                          />
+                          <img
+                            src={DashedLines_O}
+                            alt=""
+                            className="bg-darkblue w-16 rounded"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex flex-col mt-4">
+                        <div className="flex">
+                          <h1 className="font-medium">Pirates:</h1>
+                        </div>
+                        <div className="flex gap-2 mt-2">
+                          <img
+                            src={Pirates_X}
+                            alt=""
+                            className="bg-darkblue w-16 rounded"
+                          />
+                          <img
+                            src={Pirates_O}
+                            alt=""
+                            className="bg-darkblue w-16 rounded"
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div className="flex">
-                      <input type="checkbox" className="" />
-                      <div>Pirates:</div>
-                    </div>
-                  </div>
+                  </form>
 
                   <div className="mt-4">
                     <button
-                      type="button"
+                      type="submit"
                       className="inline-flex justify-center rounded-md bg-darkblue px-4 py-2 text-sm font-medium text-bgtable focus:outline-none"
-                      onClick={closeModal}
+                      onClick={handleSettings}
                     >
                       Done.
                     </button>

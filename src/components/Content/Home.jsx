@@ -12,7 +12,7 @@ function Home() {
   const winner = calculateWinner(history[stepNumber]);
   const whoIsIt = xIsNext ? "X" : "O";
   const [isOpen, setIsOpen] = useState(false);
-  const options = ["Pirates", history];
+  const [options, setOptions] = useState("Default");
 
   useEffect(() => {
     if (winner != null) {
@@ -53,13 +53,17 @@ function Home() {
       <div className="flex justify-center mx-56 mt-12">
         <div className="w-auto">
           <Table
-            Boxes={options[1][stepNumber]}
-            settings={options[0]}
+            Boxes={history[stepNumber]}
+            settings={options}
             onClick={onClick}
           />
         </div>
         <div className="w-1/4">
-          <Settings restartGame={restartGame} />
+          <Settings
+            restartGame={restartGame}
+            options={options}
+            setOptions={setOptions}
+          />
         </div>
       </div>
 
