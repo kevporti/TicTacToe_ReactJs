@@ -12,6 +12,7 @@ function Home() {
   const winner = calculateWinner(history[stepNumber]);
   const whoIsIt = xIsNext ? "X" : "O";
   const [isOpen, setIsOpen] = useState(false);
+  const options = ["Pirates", history];
 
   useEffect(() => {
     if (winner != null) {
@@ -51,7 +52,11 @@ function Home() {
     <>
       <div className="flex justify-center mx-56 mt-12">
         <div className="w-auto">
-          <Table Boxes={history[stepNumber]} onClick={onClick} />
+          <Table
+            Boxes={options[1][stepNumber]}
+            settings={options[0]}
+            onClick={onClick}
+          />
         </div>
         <div className="w-1/4">
           <Settings restartGame={restartGame} />
@@ -84,7 +89,7 @@ function Home() {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-bgtable p-6 text-left align-middle shadow-xl transition-all">
                     <Dialog.Title
                       as="h3"
                       className="text-lg font-medium leading-6 text-gray-900"
@@ -98,7 +103,7 @@ function Home() {
                     <div className="mt-4">
                       <button
                         type="button"
-                        className="inline-flex justify-center rounded-md bg-darkblue px-4 py-2 text-sm font-medium text-white focus:outline-none"
+                        className="inline-flex justify-center rounded-md bg-darkblue px-4 py-2 text-sm font-medium text-bgtable focus:outline-none"
                         onClick={restartGame}
                       >
                         Done.
