@@ -1,19 +1,16 @@
-import React from "react";
 import Box from "./Box.jsx";
 
-function Table({ Boxes, onClick, settings }) {
+export default function Table({ boxes, handleGame, iconType }) {
   return (
     <div className="grid grid-cols-3 place-items-center gap-4 bg-bgtable rounded-lg p-8">
-      {Boxes.map((box, i) => (
+      {boxes.map((boxContent, i) => (
         <Box
           key={i}
-          settings={settings}
-          value={box}
-          onClick={() => onClick(i)}
+          iconType={iconType}
+          boxContent={boxContent}
+          handleGame={() => handleGame(i)}
         />
       ))}
     </div>
   );
 }
-
-export default Table;

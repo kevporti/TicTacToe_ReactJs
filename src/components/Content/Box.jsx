@@ -1,41 +1,39 @@
-import React from "react";
-import Default_O from "./XandO/Default_O.png";
-import Default_X from "./XandO/Default_X.png";
-import Pirates_O from "./XandO/Pirates_O.png";
-import Pirates_X from "./XandO/Pirates_X.png";
-import DashedLines_X from "./XandO/DashedLines_X.png";
-import DashedLines_O from "./XandO/DashedLines_O.png";
+import default_O from "./XandO/Default_O.png";
+import default_X from "./XandO/Default_X.png";
+import pirates_O from "./XandO/Pirates_O.png";
+import pirates_X from "./XandO/Pirates_X.png";
+import dashedLines_X from "./XandO/DashedLines_X.png";
+import dashedLines_O from "./XandO/DashedLines_O.png";
 
-function Box({ value, onClick, settings }) {
-  function opciones(value) {
-    if (settings === "Default") {
-      if (value === "X") {
-        return Default_X;
-      } else if (value === "O") {
-        return Default_O;
+export default function Box({ boxContent, iconType, handleGame }) {
+  function handleChangeIcons(boxContent) {
+    if (iconType === "default") {
+      if (boxContent === "X") {
+        return default_X;
+      } else if (boxContent === "O") {
+        return default_O;
       }
-    } else if (settings === "Pirates") {
-      if (value === "X") {
-        return Pirates_X;
-      } else if (value === "O") {
-        return Pirates_O;
+    } else if (iconType === "pirates") {
+      if (boxContent === "X") {
+        return pirates_X;
+      } else if (boxContent === "O") {
+        return pirates_O;
       }
-    } else if (settings === "DashedLines")
-      if (value === "X") {
-        return DashedLines_X;
-      } else if (value === "O") {
-        return DashedLines_O;
+    } else if (iconType === "dashedLines") {
+      if (boxContent === "X") {
+        return dashedLines_X;
+      } else if (boxContent === "O") {
+        return dashedLines_O;
       }
+    }
   }
 
   return (
     <div
       className="flex justify-center items-center text-3xl font-medium bg-darkblue rounded h-20 w-20 cursor-pointer"
-      onClick={onClick}
+      onClick={handleGame}
     >
-      <img src={opciones(value)} alt="" />
+      <img src={handleChangeIcons(boxContent)} alt="" />
     </div>
   );
 }
-
-export default Box;

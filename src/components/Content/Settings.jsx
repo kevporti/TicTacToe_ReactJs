@@ -1,40 +1,37 @@
-import React, { useState, Fragment } from "react";
+import { useState, Fragment } from "react";
 import { Transition, Dialog } from "@headlessui/react";
-import Default_O from "./XandO/Default_O.png";
-import Default_X from "./XandO/Default_X.png";
-import Pirates_O from "./XandO/Pirates_O.png";
-import Pirates_X from "./XandO/Pirates_X.png";
-import DashedLines_X from "./XandO/DashedLines_X.png";
-import DashedLines_O from "./XandO/DashedLines_O.png";
+import default_O from "./XandO/Default_O.png";
+import default_X from "./XandO/Default_X.png";
+import pirates_O from "./XandO/Pirates_O.png";
+import pirates_X from "./XandO/Pirates_X.png";
+import dashedLines_X from "./XandO/DashedLines_X.png";
+import dashedLines_O from "./XandO/DashedLines_O.png";
 
-function Settings({ restartGame, options, setOptions }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [Icon, setIcon] = useState("");
+export default function Settings({ restartGame, iconType, setIconType }) {
+  const [modalSettingsOpen, setModalSettingsOpen] = useState(false);
+  const [icon, setIcon] = useState("");
 
   function openModal() {
-    setIsOpen(true);
+    setModalSettingsOpen(true);
   }
 
   function closeModal() {
-    setIsOpen(false);
+    setModalSettingsOpen(false);
   }
 
   function handleSelectIcons(e) {
     setIcon(e.target.value);
   }
 
-  async function handleSettings() {
-    await setOptions(Icon);
+  function handleSettings(e) {
+    e.preventDefault();
+    setIconType(icon);
     closeModal();
   }
 
   return (
     <>
       <div className="mx-4 bg-bgtable rounded-lg h-full">
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-        />
         <h1 className="font-medium text-center text-3xl">Settings</h1>
         <div className="grid grid-cols-2 gap-4 m-4">
           <div
@@ -50,10 +47,9 @@ function Settings({ restartGame, options, setOptions }) {
             <i className="material-symbols-outlined cursor-pointer">settings</i>
           </div>
         </div>
-        <div></div>
       </div>
 
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition appear show={modalSettingsOpen} as={Fragment}>
         <Dialog as="div" className="z-10 relative" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
@@ -94,12 +90,12 @@ function Settings({ restartGame, options, setOptions }) {
                         </div>
                         <div className="flex gap-2 mt-2">
                           <img
-                            src={Default_X}
+                            src={default_X}
                             alt=""
                             className="bg-darkblue w-16 rounded"
                           />
                           <img
-                            src={Default_O}
+                            src={default_O}
                             alt=""
                             className="bg-darkblue w-16 rounded"
                           />
@@ -108,13 +104,13 @@ function Settings({ restartGame, options, setOptions }) {
                       <div className="flex justify-start items-center">
                         <select
                           name="selectIcons"
-                          value={Icon}
+                          value={icon}
                           onChange={handleSelectIcons}
                           className="py-1 px-4 bg-darkblue text-bgtable rounded focus:outline-none"
                         >
-                          <option value="Default">Default</option>
-                          <option value="Pirates">Pirates</option>
-                          <option value="DashedLines">DashedLines</option>
+                          <option value="default">Default</option>
+                          <option value="pirates">Pirates</option>
+                          <option value="dashedLines">DashedLines</option>
                         </select>
                       </div>
                       <div className="flex flex-col mt-4">
@@ -123,12 +119,12 @@ function Settings({ restartGame, options, setOptions }) {
                         </div>
                         <div className="flex gap-2 mt-2">
                           <img
-                            src={DashedLines_X}
+                            src={dashedLines_X}
                             alt=""
                             className="bg-darkblue w-16 rounded"
                           />
                           <img
-                            src={DashedLines_O}
+                            src={dashedLines_O}
                             alt=""
                             className="bg-darkblue w-16 rounded"
                           />
@@ -140,12 +136,12 @@ function Settings({ restartGame, options, setOptions }) {
                         </div>
                         <div className="flex gap-2 mt-2">
                           <img
-                            src={Pirates_X}
+                            src={pirates_X}
                             alt=""
                             className="bg-darkblue w-16 rounded"
                           />
                           <img
-                            src={Pirates_O}
+                            src={pirates_O}
                             alt=""
                             className="bg-darkblue w-16 rounded"
                           />
@@ -160,7 +156,7 @@ function Settings({ restartGame, options, setOptions }) {
                       className="inline-flex justify-center rounded-md bg-darkblue px-4 py-2 text-sm font-medium text-bgtable focus:outline-none"
                       onClick={handleSettings}
                     >
-                      Done.
+                      Done
                     </button>
                   </div>
                 </Dialog.Panel>
@@ -172,5 +168,3 @@ function Settings({ restartGame, options, setOptions }) {
     </>
   );
 }
-
-export default Settings;
