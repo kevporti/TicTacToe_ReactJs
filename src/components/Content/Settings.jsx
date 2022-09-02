@@ -7,7 +7,7 @@ import pirates_X from "./XandO/Pirates_X.png";
 import dashedLines_X from "./XandO/DashedLines_X.png";
 import dashedLines_O from "./XandO/DashedLines_O.png";
 
-export default function Settings({ restartGame, iconType, setIconType }) {
+export default function Settings({ restartGame, setIconType }) {
   const [modalSettingsOpen, setModalSettingsOpen] = useState(false);
   const [icon, setIcon] = useState("");
 

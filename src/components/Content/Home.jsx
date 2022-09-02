@@ -66,7 +66,6 @@ export default function Home() {
         <div className="w-1/4">
           <Settings
             restartGame={restartGame}
-            iconType={iconType}
             setIconType={setIconType}
           />
         </div>
