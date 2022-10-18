@@ -4,6 +4,12 @@ Tic Tac Toe is a game to play in a board of 3x3 using Xs and Os to identify play
 
 Tres en raya es un juego de tablero de 3x3 usando Xs y Os para identificar a los jugadores. El primero que consigue ordenar tres de sus piezas en fila, columna o diagonal gana. Disfrutá del juego seleccionando un tema para los íconos!
 
+View of the game / Vista del juego:
+![tictactoe preview](https://user-images.githubusercontent.com/85496623/196504829-5ee9a002-dac9-4026-849a-2bd47ae89939.PNG)
+
+
+
+
 ## Installing on your computer - Instalar en tu computador
 
 <p>1-. Open your terminal and then type:</p>
